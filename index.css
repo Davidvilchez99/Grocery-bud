@@ -1,0 +1,51 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+#grocery{
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align: center;
+    width: 40%;
+    height: 200px;
+    border-radius: 10px;
+    margin-top: 10%;
+}
+#search{
+    width: 300px;
+    height: 40px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+#submit{
+    width: 80px;
+    height: 45px;
+    color: white;
+    background-color: blue;
+    border-bottom-right-radius: 5px;
+    border: none;
+    border-top-right-radius: 5px;
+}
+li{
+    list-style: none;
+    color: black;
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: row;
+}
+
+#bud{
+    margin: 5px;
+}
+#clearItems{
+    color: red;
+    background-color: white;
+    text-decoration: none;
+    border: none;
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 10px;
+}
+
+

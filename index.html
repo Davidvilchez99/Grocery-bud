@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<script>
+    window.onload = () =>{
+        search = document.getElementById("search");
+        grocery = document.getElementById("grocery");
+        bud = document.getElementById("bud");
+        submit = document.getElementById("submit");
+        contador=0;
+        submit.addEventListener('click', ()=>{
+            contador++;
+            bud.innerHTML += `
+                <li class="title" style="width: 400px; height: 40px; padding: 5px;">
+                    <div style="width: 300px; text-align: left; margin-top:9px;">`+search.value+`</div> 
+                    <div style="width: 50px;  display: flex; flex-direction:row;">
+                        <img src="./imagenes/Edit.png" alt="editIMG" class="editIMG" style="width:30px; height: 30px;" onclick="editar(`+contador+`)" >
+                        <img src="./imagenes/Delete.png" alt="deleteIMG" class="deleteIMG" style="width:30px; height: 30px;" onclick="eliminar(`+contador+`)">
+                    </div> 
+                </li>`;
+            search.value = "";
+            const heigthBud = grocery.getBoundingClientRect().height;
+            grocery.style.height = heigthBud+50+"px";
+            lis = document.getElementsByClassName("title");
+            deleteBTN = document.getElementsByClassName("deleteIMG");
+            editBTN = document.getElementsByClassName("editIMG");
+        })
+
+        clearItems = document.getElementById("clearItems");
+        clearItems.addEventListener('click', ()=>{
+            bud.remove();
+            grocery.style.height = "200px";
+        })
+
+        function editar(id){
+            word = prompt("Dime la palabra");
+            document.getElementsByClassName("title")[i].innerHTML = word;;
+        }
+        function eliminar(id){
+            document.getElementsByClassName("title")[id].remove();
+        }
+}
+</script>
+<body>
+    <div id="grocery">
+        <h2>Grocery Bud</h2><br>
+        <input type="text" name="search" id="search" placeholder="e.g. eggs"><button id="submit">Submit</button><br>
+        <ul id="bud" style="margin-left: 70px;">
+        </ul>
+        <button id="clearItems">Clear Items</button>
+    </div>
+</body>
+</html>
