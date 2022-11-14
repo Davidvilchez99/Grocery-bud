@@ -7,46 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="index.css">
 </head>
-<script>
-    window.onload = () =>{
-        search = document.getElementById("search");
-        grocery = document.getElementById("grocery");
-        bud = document.getElementById("bud");
-        submit = document.getElementById("submit");
-        contador=0;
-        submit.addEventListener('click', ()=>{
-            contador++;
-            bud.innerHTML += `
-                <li class="title" style="width: 400px; height: 40px; padding: 5px;">
-                    <div style="width: 300px; text-align: left; margin-top:9px;">`+search.value+`</div> 
-                    <div style="width: 50px;  display: flex; flex-direction:row;">
-                        <img src="./imagenes/Edit.png" alt="editIMG" class="editIMG" style="width:30px; height: 30px;" onclick="editar(`+contador+`)" >
-                        <img src="./imagenes/Delete.png" alt="deleteIMG" class="deleteIMG" style="width:30px; height: 30px;" onclick="eliminar(`+contador+`)">
-                    </div> 
-                </li>`;
-            search.value = "";
-            const heigthBud = grocery.getBoundingClientRect().height;
-            grocery.style.height = heigthBud+50+"px";
-            lis = document.getElementsByClassName("title");
-            deleteBTN = document.getElementsByClassName("deleteIMG");
-            editBTN = document.getElementsByClassName("editIMG");
-        })
 
-        clearItems = document.getElementById("clearItems");
-        clearItems.addEventListener('click', ()=>{
-            bud.remove();
-            grocery.style.height = "200px";
-        })
-
-        function editar(id){
-            word = prompt("Dime la palabra");
-            document.getElementsByClassName("title")[i].innerHTML = word;;
-        }
-        function eliminar(id){
-            document.getElementsByClassName("title")[id].remove();
-        }
-}
-</script>
 <body>
     <div id="grocery">
         <h2>Grocery Bud</h2><br>
@@ -55,5 +16,75 @@
         </ul>
         <button id="clearItems">Clear Items</button>
     </div>
+    <script>
+        window.onload = () =>{
+            search = document.getElementById("search");
+            grocery = document.getElementById("grocery");
+            bud = document.getElementById("bud");
+            submit = document.getElementById("submit");
+            submit.addEventListener('click', ()=>{
+                let li = document.createElement("li");
+                bud.appendChild(li);
+                li.style.height="40px";
+                li.style.width = "400px";
+                li.style.padding = "5px";
+                li.className = "li";
+                let div = document.createElement("div");
+                li.appendChild(div);
+                let div2 = document.createElement("div");
+                li.appendChild(div2);
+                div.innerHTML = search.value;
+                div.style.textAlign="left";
+                div.style.width = "300px";
+                div.style.marginTop = "9px";
+                div.className = "divInner";
+                div2.style.width = "50px";
+                div2.style.display = "flex";
+                div2.style.flexDirection = "row";
+                const heigthBud = grocery.getBoundingClientRect().height;
+                let img = document.createElement("img");
+                div2.appendChild(img);
+                let img2 = document.createElement("img");
+                div2.appendChild(img2);
+                img.src = "./imagenes/Edit.png";
+                img.className = "editIMG";
+                img.style.height="30px";
+                img.style.width = "30px";
+                img.addEventListener('click', (e)=>{
+                    word = prompt("Dime la palabra");
+                    div.innerHTML = word;
+                })
+                img2.src = "./imagenes/Delete.png";
+                img2.className = "deleteIMG";
+                img2.style.height="30px";
+                img2.style.width = "30px";
+                deleteBTN = document.getElementsByClassName("deleteIMG");
+                editBTN = document.getElementsByClassName("editIMG");
+                divInner = document.getElementsByClassName("divInner");
+                lis = document.getElementsByClassName("li");
+                for(let i = 0; i < deleteBTN.length; i++) {
+                    deleteBTN[i].addEventListener('click', (e) => {
+                let li = e.target.parentElement.parentElement;
+                bud.removeChild(li);
+                
+            })};
+                search.value = "";
+                
+                grocery.style.height = heigthBud+50+"px";
+
+                lis = document.getElementsByClassName("title");
+                
+                editBTN = document.getElementsByClassName("editIMG");
+    
+            clearItems = document.getElementById("clearItems");
+            clearItems.addEventListener('click', ()=>{
+            for(i=0; i<document.getElementsByTagName("li").length; i++){
+                document.getElementsByTagName("li")[i].remove();
+            }
+                grocery.style.height = "200px";
+            })
+    })
+        }
+    </script>
 </body>
 </html>
